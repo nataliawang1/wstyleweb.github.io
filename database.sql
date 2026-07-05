@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS contactos (
 -- Insertar administrador por defecto (usuario: admin, contraseña: admin123)
 -- La contraseña está hasheada con password_hash()
 INSERT INTO administradores (username, password, email) VALUES 
-('admin', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'admin@w-style.com');
+('admin', '$2y$10$q/n.j5RJGEGFs2cXVGEtrOchjQm7NA8a8UGnYJbHdYOUkFfdEJbtm', 'admin@w-style.com');
 
 -- Insertar datos de ejemplo para portafolio
 INSERT INTO portafolio (titulo, descripcion, imagen, categoria) VALUES 
