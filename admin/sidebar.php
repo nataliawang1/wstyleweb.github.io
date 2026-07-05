@@ -14,6 +14,6 @@
     </ul>
     
     <div class="sidebar-footer">
-        <a href="../index.html" target="_blank">🌐 Ver Sitio Web</a>
+        <a href="/W-Style/index.php" target="_blank">🌐 Ver Sitio Web</a>
     </div>
 </nav>

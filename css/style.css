@@ -988,3 +988,23 @@ footer p {
         font-size: 12px;
     }
 }
+
+/* Mensajes de formularios */
+.form-message {
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.form-message.success {
+    background-color: #e6f7e6;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+}
+
+.form-message.error {
+    background-color: #fdecea;
+    color: #c62828;
+    border: 1px solid #c62828;
+}
