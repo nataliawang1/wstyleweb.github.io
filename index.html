@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W-Style | Wang Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
+                </a>
+            </div>
+            <ul class="nav-links left-links">
+                <li><a href="index.html" class="active">Wang</a></li>
+                <li><a href="portafolio.html">Portafolio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+            </ul>
+            <ul class="nav-links right-links">
+                <li><a href="clientes.html">Clientes</a></li>
+                <li><a href="wclub.html">W-Club</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Wang Style</h1>
+                <p>Estilo único. Elegancia sin límites.</p>
+                <a href="W-Style\portafolio.html" class="btn btn-shop">Ver más</a>
+            </div>
+        </section>
+
+        <section class="wclub-preview">
+            <h2>W Club</h2>
+            <p>Únete a nuestra comunidad exclusiva de moda y estilo.</p>
+            <a href="wclub.html" class="btn btn-shop">Ver más</a>
+            <div class="gallery-item">
+                <img src="images/wclub.jpg" alt="W Club">
+            </div>
+        </section>
+
+        <section class="portfolio-preview">
+            <h2>Portafolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/portfolio1.jpg" alt="Colección 2024">
+                    <div class="portfolio-overlay">
+                        <h3>Colección 2024</h3>
+                        <p>Moda contemporánea</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio2.jpg" alt="Editorial Vogue">
+                    <div class="portfolio-overlay">
+                        <h3>Editorial Vogue</h3>
+                        <p>Fotografía de moda</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio3.jpg" alt="Desfile Primavera">
+                    <div class="portfolio-overlay">
+                        <h3>Desfile Primavera</h3>
+                        <p>Runway show</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio4.jpg" alt="Lookbook Verano">
+                    <div class="portfolio-overlay">
+                        <h3>Lookbook Verano</h3>
+                        <p>Campaña seasonal</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio5.jpg" alt="Estudio Creativo">
+                    <div class="portfolio-overlay">
+                        <h3>Estudio Creativo</h3>
+                        <p>Behind the scenes</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio6.jpg" alt="Colaboración">
+                    <div class="portfolio-overlay">
+                        <h3>Colaboración</h3>
+                        <p>Edición limitada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="clients-preview">
+            <h2>Clientes</h2>
+            <div class="testimonials-carousel">
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <div class="testimonials-track">
+                    <div class="testimonial-item">
+                        <p>"W-Style transformó completamente mi imagen personal. Su visión creativa es incomparable y su atención al detalle es excepcional."</p>
+                        <cite>- María González</cite>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"La experiencia de trabajar con Wang Style fue increíble. Entendieron perfectamente mi estilo y me ayudaron a proyectar la mejor versión de mí mismo."</p>
+                        <cite>- Carlos Rodríguez</cite>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Profesionalismo, creatividad y elegancia. W-Style elevó mi imagen a un nivel que nunca imaginé posible."</p>
+                        <cite>- Ana Martínez</cite>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"El equipo de W-Style entiende el lujo como nadie más. Su atención al detalle y profesionalismo son excepcionional."</p>
+                        <cite>- Laura Sánchez</cite>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Colaboración excepcional. W-Style aportó una perspectiva única que elevó nuestro proyecto al siguiente nivel."</p>
+                        <cite>- Miguel Torres</cite>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Trabajar con W-Style fue una experiencia transformadora. Su visión creativa superó todas nuestras expectativas."</p>
+                        <cite>- Pedro López</cite>
+                    </div>
+                </div>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+        </section>
+
+        <section class="contact-preview">
+            <h2>Contacto</h2>
+            <p>¿Listo para trabajar juntos?</p>
+            <form class="contact-form-inline">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="mensaje" placeholder="Mensaje" rows="3" required></textarea>
+                <button type="submit" class="btn">SEND</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
+            </div>
+            <div class="footer-social">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <p>&copy; 2024 W-Style. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const itemsPerView = 3;
+        const track = document.querySelector('.testimonials-track');
+        const totalItems = document.querySelectorAll('.testimonial-item').length;
+
+        function moveCarousel(direction) {
+            const maxIndex = totalItems - itemsPerView;
+            currentIndex += direction;
+
+            if (currentIndex < 0) {
+                currentIndex = maxIndex;
+            } else if (currentIndex > maxIndex) {
+                currentIndex = 0;
+            }
+
+            const itemWidth = track.children[0].offsetWidth + 30; // 30 is gap
+            track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        }
+
+        // Auto-play carousel
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+    </script>
+</body>
+</html>
