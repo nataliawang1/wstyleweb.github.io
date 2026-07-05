@@ -1,3 +1,32 @@
+<?php
+require_once 'config/database.php';
+$activePage = 'wclub';
+
+$mensaje = '';
+$tipoMensaje = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nombre = trim($_POST['nombre'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $telefono = trim($_POST['telefono'] ?? '');
+
+    if (empty($nombre) || empty($email)) {
+        $mensaje = 'El nombre y el correo son obligatorios.';
+        $tipoMensaje = 'error';
+    } else {
+        $stmt = $conn->prepare("INSERT INTO wclub_miembros (nombre, email, telefono) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $nombre, $email, $telefono);
+        if ($stmt->execute()) {
+            $mensaje = '¡Bienvenido al W Club! Tu registro fue exitoso.';
+            $tipoMensaje = 'success';
+        } else {
+            $mensaje = 'Este correo ya está registrado o hubo un error. Intenta de nuevo.';
+            $tipoMensaje = 'error';
+        }
+        $stmt->close();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,25 +39,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
-                </a>
-            </div>
-            <ul class="nav-links left-links">
-                <li><a href="index.html">Wang</a></li>
-                <li><a href="portafolio.html">Portafolio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-            </ul>
-            <ul class="nav-links right-links">
-                <li><a href="clientes.html">Clientes</a></li>
-                <li><a href="wclub.html" class="active">W-Club</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'includes/navbar.php'; ?>
 
     <main>
         <section class="page-header">
@@ -75,27 +86,18 @@
 
         <section class="club-join">
             <h2>Únete Ahora</h2>
-            <form class="join-form">
-                <input type="text" placeholder="Nombre completo" required>
-                <input type="email" placeholder="Correo electrónico" required>
-                <input type="tel" placeholder="Teléfono" required>
+            <?php if ($mensaje): ?>
+                <p class="form-message <?php echo $tipoMensaje; ?>"><?php echo htmlspecialchars($mensaje); ?></p>
+            <?php endif; ?>
+            <form class="join-form" method="POST" action="wclub.php">
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="tel" name="telefono" placeholder="Teléfono" required>
                 <button type="submit" class="btn">Registrarse</button>
             </form>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
-            </div>
-            <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-            </div>
-        </div>
-        <p>&copy; 2024 W-Style. Todos los derechos reservados.</p>
-    </footer>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

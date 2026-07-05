@@ -1,3 +1,33 @@
+<?php
+require_once 'config/database.php';
+$activePage = 'contacto';
+
+$mensajeEstado = '';
+$tipoMensaje = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nombre = trim($_POST['nombre'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $telefono = trim($_POST['telefono'] ?? '');
+    $mensaje = trim($_POST['mensaje'] ?? '');
+
+    if (empty($nombre) || empty($email) || empty($mensaje)) {
+        $mensajeEstado = 'Por favor completa todos los campos obligatorios.';
+        $tipoMensaje = 'error';
+    } else {
+        $stmt = $conn->prepare("INSERT INTO contactos (nombre, email, telefono, mensaje) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nombre, $email, $telefono, $mensaje);
+        if ($stmt->execute()) {
+            $mensajeEstado = '¡Mensaje enviado! Te contactaremos pronto.';
+            $tipoMensaje = 'success';
+        } else {
+            $mensajeEstado = 'Hubo un error al enviar tu mensaje. Intenta de nuevo.';
+            $tipoMensaje = 'error';
+        }
+        $stmt->close();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,25 +40,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
-                </a>
-            </div>
-            <ul class="nav-links left-links">
-                <li><a href="index.html">Wang</a></li>
-                <li><a href="portafolio.html">Portafolio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-            </ul>
-            <ul class="nav-links right-links">
-                <li><a href="clientes.html">Clientes</a></li>
-                <li><a href="wclub.html">W-Club</a></li>
-                <li><a href="contacto.html" class="active">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'includes/navbar.php'; ?>
 
     <main>
         <section class="page-header">
@@ -59,7 +71,10 @@
 
             <div class="contact-form">
                 <h2>Envíanos un mensaje</h2>
-                <form>
+                <?php if ($mensajeEstado): ?>
+                    <p class="form-message <?php echo $tipoMensaje; ?>"><?php echo htmlspecialchars($mensajeEstado); ?></p>
+                <?php endif; ?>
+                <form method="POST" action="contacto.php">
                     <input type="text" name="nombre" placeholder="Nombre completo" required>
                     <input type="email" name="email" placeholder="Correo electrónico" required>
                     <input type="tel" name="telefono" placeholder="Teléfono">
@@ -70,18 +85,6 @@
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
-            </div>
-            <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-            </div>
-        </div>
-        <p>&copy; 2024 W-Style. Todos los derechos reservados.</p>
-    </footer>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>
