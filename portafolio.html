@@ -1,99 +1,233 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>W-Style | Portafolio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-    <header>
+
+    <header class="header">
+
         <nav class="navbar">
-            <div class="logo">
+
+            <div class="navbar__logo">
+
                 <a href="index.html">
+
                     <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
+
                 </a>
+
             </div>
-            <ul class="nav-links left-links">
-                <li><a href="index.html">Wang</a></li>
-                <li><a href="portafolio.html" class="active">Portafolio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
+
+            <ul class="navbar__links left-links">
+
+                <li><a href="index.html" class="navbar__link">Wang</a></li>
+
+                <li><a href="portafolio.html" class="navbar__link active">Portafolio</a></li>
+
+                <li><a href="servicios.html" class="navbar__link">Servicios</a></li>
+
             </ul>
-            <ul class="nav-links right-links">
-                <li><a href="clientes.html">Clientes</a></li>
-                <li><a href="wclub.html">W-Club</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+
+            <ul class="navbar__links right-links">
+
+                <li><a href="clientes.html" class="navbar__link">Clientes</a></li>
+
+                <li><a href="wclub.html" class="navbar__link">W-Club</a></li>
+
+                <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
+
     <main>
-        <section class="page-header">
-            <h1>Portafolio W</h1>
-            <p>Nuestras mejores creaciones</p>
+
+        <section class="hero-section">
+
+            <div class="hero-background">
+
+                <img src="images/HEADER 3.jpg" alt="Portafolio Background">
+
+            </div>
+
+            <div class="hero-content">
+
+                <h1 id="portfolio-page-title">Portafolio W</h1>
+
+                <p id="portfolio-page-description">Nuestras mejores creaciones</p>
+
+            </div>
+
         </section>
 
-        <section class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="images/portfolio1.jpg" alt="Colección 2024">
-                <div class="portfolio-overlay">
-                    <h3>Colección 2024</h3>
-                    <p>Moda contemporánea</p>
-                </div>
+
+
+        <section id="portfolio-list" class="portfolio-grid"></section>
+
+
+
+        <section id="portfolio-detail" class="portfolio-detail hidden">
+
+            <div class="portfolio-detail-header">
+
+                <a href="portafolio.html" class="btn btn-secondary">← Volver al portafolio</a>
+
             </div>
-            <div class="portfolio-item">
-                <img src="images/portfolio2.jpg" alt="Editorial Vogue">
-                <div class="portfolio-overlay">
-                    <h3>Editorial Vogue</h3>
-                    <p>Fotografía de moda</p>
+
+            <div class="portfolio-detail-layout">
+
+                <div class="portfolio-main-view">
+
+                    <div class="main-image-card">
+
+                        <img id="portfolio-main-image" src="" alt="Galería de portafolio">
+
+                    </div>
+
+                    <div id="portfolio-thumbnail-grid" class="thumbnail-grid"></div>
+
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/portfolio3.jpg" alt="Desfile Primavera">
-                <div class="portfolio-overlay">
-                    <h3>Desfile Primavera</h3>
-                    <p>Runway show</p>
+
+
+
+                <div class="portfolio-meta">
+
+                    <span class="eyebrow" id="detail-category"></span>
+
+                    <h2 id="detail-title"></h2>
+
+                    <p id="detail-description"></p>
+
+
+
+                    <div class="collaborators-panel">
+
+                        <h3>Colaboradores</h3>
+
+                        <div id="collaborators-list" class="collaborators-list"></div>
+
+                    </div>
+
                 </div>
+
             </div>
-            <div class="portfolio-item">
-                <img src="images/portfolio4.jpg" alt="Lookbook Verano">
-                <div class="portfolio-overlay">
-                    <h3>Lookbook Verano</h3>
-                    <p>Campaña seasonal</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/portfolio5.jpg" alt="Estudio Creativo">
-                <div class="portfolio-overlay">
-                    <h3>Estudio Creativo</h3>
-                    <p>Behind the scenes</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="images/portfolio6.jpg" alt="Colaboración">
-                <div class="portfolio-overlay">
-                    <h3>Colaboración</h3>
-                    <p>Edición limitada</p>
-                </div>
-            </div>
+
         </section>
+
+
+
+        <section id="portfolio-lightbox" class="lightbox hidden" aria-hidden="true">
+
+            <div class="lightbox-backdrop"></div>
+
+            <div class="lightbox-content" role="dialog" aria-modal="true">
+
+                <button class="lightbox-close" aria-label="Cerrar galería">×</button>
+
+                <button class="lightbox-nav prev" aria-label="Imagen anterior">‹</button>
+
+                <button class="lightbox-nav next" aria-label="Siguiente imagen">›</button>
+
+                <div class="lightbox-image-wrapper">
+
+                    <img id="lightbox-image" src="" alt="Imagen de sesión de portafolio">
+
+                </div>
+
+                <div class="lightbox-caption" id="lightbox-caption"></div>
+
+            </div>
+
+        </section>
+
     </main>
 
+
+
     <footer>
+
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
-            </div>
             <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
+                <a href="https://www.instagram.com/wangstyle.co/" target="_blank">Instagram</a>
+                <a href="https://wa.me/qr/HW7FFM5R3IJLK1" target="_blank">WhatsApp</a>
             </div>
         </div>
-        <p>&copy; 2024 W-Style. Todos los derechos reservados.</p>
+
+        <div class="footer-links">
+
+            <div class="footer-column">
+
+                <h3>Navegación</h3>
+
+                <ul>
+
+                    <li><a href="index.html">Wang</a></li>
+
+                    <li><a href="portafolio.html">Portafolio</a></li>
+
+                    <li><a href="servicios.html">Servicios</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Comunidad</h3>
+
+                <ul>
+
+                    <li><a href="clientes.html">Clientes</a></li>
+
+                    <li><a href="wclub.html">W-Club</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contacto</h3>
+
+                <ul>
+
+                    <li><a href="contacto.html">Contacto</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <p>&copy; 2026 W-Style. Todos los derechos reservados.</p>
+
     </footer>
+
+    <script src="assets/js/site-data.js"></script>
+
 </body>
+
 </html>
+

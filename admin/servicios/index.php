@@ -39,7 +39,7 @@ $result = $conn->query("SELECT * FROM servicios ORDER BY created_at DESC");
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Icono</th>
+                            <th>Imagen</th>
                             <th>Título</th>
                             <th>Fecha</th>
                             <th>Acciones</th>
@@ -49,7 +49,7 @@ $result = $conn->query("SELECT * FROM servicios ORDER BY created_at DESC");
                         <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
                             <td><?php echo $row['id']; ?></td>
-                            <td><?php echo htmlspecialchars($row['icono']); ?></td>
+                            <td><?php if ($row['imagen']): ?><img src="../../images/<?php echo htmlspecialchars($row['imagen']); ?>" style="max-width: 50px; height: auto;"><?php else: ?>Sin imagen<?php endif; ?></td>
                             <td><?php echo htmlspecialchars($row['titulo']); ?></td>
                             <td><?php echo date('d/m/Y', strtotime($row['created_at'])); ?></td>
                             <td class="actions">

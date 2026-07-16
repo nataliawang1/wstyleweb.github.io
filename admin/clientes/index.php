@@ -14,7 +14,7 @@ if (isset($_GET['eliminar'])) {
     exit();
 }
 
-$result = $conn->query("SELECT * FROM clientes ORDER BY created_at DESC");
+$result = $conn->query("SELECT c.*, COUNT(cg.id) AS galeria_count FROM clientes c LEFT JOIN cliente_galeria cg ON c.id = cg.cliente_id GROUP BY c.id ORDER BY c.created_at DESC");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,8 +30,8 @@ $result = $conn->query("SELECT * FROM clientes ORDER BY created_at DESC");
         
         <div class="main-content">
             <header class="admin-header">
-                <h1>Clientes</h1>
-                <a href="crear.php" class="btn-primary">+ Agregar Nuevo</a>
+                <h1>Clientes - BTS Gallery</h1>
+                <a href="crear.php" class="btn-primary">+ Agregar Nuevo Cliente</a>
             </header>
             
             <div class="table-container">
@@ -41,6 +41,7 @@ $result = $conn->query("SELECT * FROM clientes ORDER BY created_at DESC");
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Marca</th>
+                            <th>Galería (Fotos/Videos)</th>
                             <th>Fecha</th>
                             <th>Acciones</th>
                         </tr>
@@ -51,10 +52,15 @@ $result = $conn->query("SELECT * FROM clientes ORDER BY created_at DESC");
                             <td><?php echo $row['id']; ?></td>
                             <td><?php echo htmlspecialchars($row['nombre']); ?></td>
                             <td><?php echo htmlspecialchars($row['marca']); ?></td>
+                            <td>
+                                <span class="gallery-badge" title="Elementos de galería">
+                                    <?php echo $row['galeria_count']; ?>
+                                </span>
+                            </td>
                             <td><?php echo date('d/m/Y', strtotime($row['created_at'])); ?></td>
                             <td class="actions">
                                 <a href="editar.php?id=<?php echo $row['id']; ?>" class="btn-edit">Editar</a>
-                                <a href="index.php?eliminar=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('¿Estás seguro de eliminar este cliente?');">Eliminar</a>
+                                <a href="index.php?eliminar=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('¿Estás seguro de eliminar este cliente y su galería?');">Eliminar</a>
                             </td>
                         </tr>
                         <?php endwhile; ?>
@@ -63,5 +69,16 @@ $result = $conn->query("SELECT * FROM clientes ORDER BY created_at DESC");
             </div>
         </div>
     </div>
+    
+    <style>
+        .gallery-badge {
+            background-color: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+        }
+    </style>
 </body>
 </html>

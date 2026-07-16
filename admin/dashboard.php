@@ -4,26 +4,20 @@ require_once '../includes/auth.php';
 
 requireLogin();
 
-// Obtener estadísticas
 $stats = [];
 
-// Contar portafolio
 $result = $conn->query("SELECT COUNT(*) as count FROM portafolio");
 $stats['portafolio'] = $result->fetch_assoc()['count'];
 
-// Contar servicios
 $result = $conn->query("SELECT COUNT(*) as count FROM servicios");
 $stats['servicios'] = $result->fetch_assoc()['count'];
 
-// Contar clientes
 $result = $conn->query("SELECT COUNT(*) as count FROM clientes");
 $stats['clientes'] = $result->fetch_assoc()['count'];
 
-// Contar miembros W Club
 $result = $conn->query("SELECT COUNT(*) as count FROM wclub_miembros");
 $stats['wclub'] = $result->fetch_assoc()['count'];
 
-// Contar mensajes no leídos
 $result = $conn->query("SELECT COUNT(*) as count FROM contactos WHERE leido = FALSE");
 $stats['mensajes'] = $result->fetch_assoc()['count'];
 ?>
@@ -44,13 +38,13 @@ $stats['mensajes'] = $result->fetch_assoc()['count'];
                 <h1>Panel de Administración</h1>
                 <div class="user-info">
                     <span>Bienvenido, <?php echo htmlspecialchars($_SESSION['admin_username']); ?></span>
-                    <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
+                    <a href="/W-Style/admin/logout.php" class="btn-logout">Cerrar Sesión</a>
                 </div>
             </header>
             
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">📁</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <h3>Portafolio</h3>
                         <p class="stat-number"><?php echo $stats['portafolio']; ?></p>
@@ -59,7 +53,7 @@ $stats['mensajes'] = $result->fetch_assoc()['count'];
                 </div>
                 
                 <div class="stat-card">
-                    <div class="stat-icon">🛠️</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <h3>Servicios</h3>
                         <p class="stat-number"><?php echo $stats['servicios']; ?></p>
@@ -68,7 +62,7 @@ $stats['mensajes'] = $result->fetch_assoc()['count'];
                 </div>
                 
                 <div class="stat-card">
-                    <div class="stat-icon">👥</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <h3>Clientes</h3>
                         <p class="stat-number"><?php echo $stats['clientes']; ?></p>
@@ -77,7 +71,7 @@ $stats['mensajes'] = $result->fetch_assoc()['count'];
                 </div>
                 
                 <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <h3>W Club</h3>
                         <p class="stat-number"><?php echo $stats['wclub']; ?></p>
@@ -86,7 +80,7 @@ $stats['mensajes'] = $result->fetch_assoc()['count'];
                 </div>
                 
                 <div class="stat-card">
-                    <div class="stat-icon">✉️</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <h3>Mensajes</h3>
                         <p class="stat-number"><?php echo $stats['mensajes']; ?></p>
@@ -101,7 +95,7 @@ $stats['mensajes'] = $result->fetch_assoc()['count'];
                     <a href="portafolio/crear.php" class="btn-action">+ Agregar al Portafolio</a>
                     <a href="servicios/crear.php" class="btn-action">+ Agregar Servicio</a>
                     <a href="clientes/crear.php" class="btn-action">+ Agregar Cliente</a>
-                    <a href="contactos/index.php" class="btn-action">📧 Ver Mensajes</a>
+                    <a href="contactos/index.php" class="btn-action">Ver Mensajes</a>
                 </div>
             </div>
         </div>

@@ -22,22 +22,41 @@ if (!$item) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $titulo = trim($_POST['titulo']);
     $descripcion = trim($_POST['descripcion']);
-    $icono = trim($_POST['icono']);
+    $imagen = $item['imagen'];
     
     if (empty($titulo)) {
         $error = 'El título es obligatorio.';
     } else {
-        $stmt = $conn->prepare("UPDATE servicios SET titulo = ?, descripcion = ?, icono = ? WHERE id = ?");
-        $stmt->bind_param("sssi", $titulo, $descripcion, $icono, $id);
-        
-        if ($stmt->execute()) {
-            $stmt->close();
-            header("Location: index.php");
-            exit();
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+            $imagen = time() . '_' . basename($_FILES['imagen']['name']);
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], '../../images/' . $imagen)) {
+                $stmt = $conn->prepare("UPDATE servicios SET titulo = ?, descripcion = ?, imagen = ? WHERE id = ?");
+                $stmt->bind_param("sssi", $titulo, $descripcion, $imagen, $id);
+                
+                if ($stmt->execute()) {
+                    $stmt->close();
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    $error = 'Error al actualizar el servicio.';
+                }
+                $stmt->close();
+            } else {
+                $error = 'Error al subir la imagen.';
+            }
         } else {
-            $error = 'Error al actualizar el servicio.';
+            $stmt = $conn->prepare("UPDATE servicios SET titulo = ?, descripcion = ? WHERE id = ?");
+            $stmt->bind_param("ssi", $titulo, $descripcion, $id);
+            
+            if ($stmt->execute()) {
+                $stmt->close();
+                header("Location: index.php");
+                exit();
+            } else {
+                $error = 'Error al actualizar el servicio.';
+            }
+            $stmt->close();
         }
-        $stmt->close();
     }
 }
 ?>
@@ -64,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php endif; ?>
             
             <div class="form-container">
-                <form method="POST" action="">
+                <form method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="titulo">Título *</label>
                         <input type="text" id="titulo" name="titulo" value="<?php echo htmlspecialchars($item['titulo']); ?>" required>
@@ -75,9 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <textarea id="descripcion" name="descripcion" rows="4"><?php echo htmlspecialchars($item['descripcion']); ?></textarea>
                     </div>
                     
+                    <?php if ($item['imagen']): ?>
+                        <div class="form-group">
+                            <label>Imagen actual</label>
+                            <img src="../../images/<?php echo htmlspecialchars($item['imagen']); ?>" alt="Imagen actual" style="max-width: 200px;">
+                        </div>
+                    <?php endif; ?>
+                    
                     <div class="form-group">
-                        <label for="icono">Icono (emoji)</label>
-                        <input type="text" id="icono" name="icono" value="<?php echo htmlspecialchars($item['icono']); ?>">
+                        <label for="imagen">Nueva imagen</label>
+                        <input type="file" id="imagen" name="imagen" accept="image/*">
                     </div>
                     
                     <button type="submit" class="btn-primary">Actualizar</button>

@@ -1,109 +1,157 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>W-Style | Servicios</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-    <header>
+
+    <header class="header">
+
         <nav class="navbar">
-            <div class="logo">
+
+            <div class="navbar__logo">
+
                 <a href="index.html">
+
                     <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
+
                 </a>
+
             </div>
-            <ul class="nav-links left-links">
-                <li><a href="index.html">Wang</a></li>
-                <li><a href="portafolio.html">Portafolio</a></li>
-                <li><a href="servicios.html" class="active">Servicios</a></li>
+
+            <ul class="navbar__links left-links">
+
+                <li><a href="index.html" class="navbar__link">Wang</a></li>
+
+                <li><a href="portafolio.html" class="navbar__link">Portafolio</a></li>
+
+                <li><a href="servicios.html" class="navbar__link active">Servicios</a></li>
+
             </ul>
-            <ul class="nav-links right-links">
-                <li><a href="clientes.html">Clientes</a></li>
-                <li><a href="wclub.html">W-Club</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+
+            <ul class="navbar__links right-links">
+
+                <li><a href="clientes.html" class="navbar__link">Clientes</a></li>
+
+                <li><a href="wclub.html" class="navbar__link">W-Club</a></li>
+
+                <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
+
     <main>
-        <section class="page-header">
-            <h1>Servicios</h1>
-            <p>Todo lo que necesitas para tu estilo</p>
+
+        <section class="hero-section">
+
+            <div class="hero-background">
+
+                <img src="images/HEADER 1.jpg" alt="Servicios Background">
+
+            </div>
+
+            <div class="hero-content">
+
+                <h1>Servicios</h1>
+
+                <p>Todo lo que necesitas para tu estilo</p>
+
+            </div>
+
         </section>
 
-        <section class="hero-image">
-            <img src="images/servicios-hero.jpg" alt="Servicios">
-        </section>
 
-        <section class="services-list">
-            <div class="service-item">
-                <div class="service-icon">👗</div>
-                <div class="service-content">
-                    <h3>DISEÑO W</h3>
-                    <p>Creación de colecciones de moda exclusivas, desde el concepto inicial hasta la producción final. Diseños innovadores que trascienden las tendencias.</p>
-                </div>
-                <a href="#" class="service-btn">VER MÁS</a>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">📸</div>
-                <div class="service-content">
-                    <h3>ASESORÍA W</h3>
-                    <p>Consultoría de imagen personalizada para definir tu estilo único. Proyecta la mejor versión de ti mismo con nuestra guía experta.</p>
-                </div>
-                <a href="#" class="service-btn">VER MÁS</a>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">✨</div>
-                <div class="service-content">
-                    <h3>PRODUCCIÓN W</h3>
-                    <p>Organización y producción de desfiles de moda, lanzamientos de colecciones y eventos de marca de alto perfil.</p>
-                </div>
-                <a href="#" class="service-btn">VER MÁS</a>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">🎨</div>
-                <div class="service-content">
-                    <h3>FOTOGRAFÍA W</h3>
-                    <p>Sesiones fotográficas profesionales para editoriales, lookbooks y campañas publicitarias de moda.</p>
-                </div>
-                <a href="#" class="service-btn">VER MÁS</a>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">🛍️</div>
-                <div class="service-content">
-                    <h3>STYLING W</h3>
-                    <p>Selección y coordinación de outfits para eventos especiales, sesiones de fotos y vida cotidiana.</p>
-                </div>
-                <a href="#" class="service-btn">VER MÁS</a>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">🎭</div>
-                <div class="service-content">
-                    <h3>PERSONAL SHOPPING W</h3>
-                    <p>Acompañamiento en compras para construir un armario versátil y sofisticado que refleje tu personalidad.</p>
-                </div>
-                <a href="#" class="service-btn">VER MÁS</a>
-            </div>
-        </section>
+
+        <section class="services-list" id="services-list"></section>
+
     </main>
 
+
+
     <footer>
+
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/LOGO WANG RED.jpg" alt="W-Style Logo">
-            </div>
             <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
+                <a href="https://www.instagram.com/wangstyle.co/" target="_blank">Instagram</a>
+                <a href="https://wa.me/qr/HW7FFM5R3IJLK1" target="_blank">WhatsApp</a>
             </div>
         </div>
-        <p>&copy; 2024 W-Style. Todos los derechos reservados.</p>
+
+        <div class="footer-links">
+
+            <div class="footer-column">
+
+                <h3>Navegación</h3>
+
+                <ul>
+
+                    <li><a href="index.html">Wang</a></li>
+
+                    <li><a href="portafolio.html">Portafolio</a></li>
+
+                    <li><a href="servicios.html">Servicios</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Comunidad</h3>
+
+                <ul>
+
+                    <li><a href="clientes.html">Clientes</a></li>
+
+                    <li><a href="wclub.html">W-Club</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Contacto</h3>
+
+                <ul>
+
+                    <li><a href="contacto.html">Contacto</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <p>&copy; 2026 W-Style. Todos los derechos reservados.</p>
+
     </footer>
+
+    <script src="assets/js/site-data.js"></script>
+
 </body>
+
 </html>
+

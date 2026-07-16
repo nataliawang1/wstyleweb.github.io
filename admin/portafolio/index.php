@@ -4,7 +4,6 @@ require_once '../../includes/auth.php';
 
 requireLogin();
 
-// Eliminar portafolio
 if (isset($_GET['eliminar'])) {
     $id = intval($_GET['eliminar']);
     $stmt = $conn->prepare("DELETE FROM portafolio WHERE id = ?");
@@ -15,7 +14,6 @@ if (isset($_GET['eliminar'])) {
     exit();
 }
 
-// Obtener todos los items del portafolio
 $result = $conn->query("SELECT * FROM portafolio ORDER BY created_at DESC");
 ?>
 <!DOCTYPE html>
@@ -45,11 +43,25 @@ $result = $conn->query("SELECT * FROM portafolio ORDER BY created_at DESC");
                             <th>Título</th>
                             <th>Categoría</th>
                             <th>Fecha</th>
+                            <th>Imágenes</th>
+                            <th>Colaboradores</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($row = $result->fetch_assoc()): ?>
+                        <?php
+                            $imageCount = 0;
+                            $collaboratorCount = 0;
+                            if ($conn->query("SHOW TABLES LIKE 'portafolio_imagenes'")->num_rows > 0) {
+                                $countResult = $conn->query("SELECT COUNT(*) AS cnt FROM portafolio_imagenes WHERE portafolio_id = " . intval($row['id']));
+                                $imageCount = $countResult ? $countResult->fetch_assoc()['cnt'] : 0;
+                            }
+                            if ($conn->query("SHOW TABLES LIKE 'portafolio_colaboradores'")->num_rows > 0) {
+                                $countResult = $conn->query("SELECT COUNT(*) AS cnt FROM portafolio_colaboradores WHERE portafolio_id = " . intval($row['id']));
+                                $collaboratorCount = $countResult ? $countResult->fetch_assoc()['cnt'] : 0;
+                            }
+                        ?>
                         <tr>
                             <td><?php echo $row['id']; ?></td>
                             <td>
@@ -62,8 +74,11 @@ $result = $conn->query("SELECT * FROM portafolio ORDER BY created_at DESC");
                             <td><?php echo htmlspecialchars($row['titulo']); ?></td>
                             <td><?php echo htmlspecialchars($row['categoria']); ?></td>
                             <td><?php echo date('d/m/Y', strtotime($row['created_at'])); ?></td>
+                            <td><?php echo $imageCount; ?></td>
+                            <td><?php echo $collaboratorCount; ?></td>
                             <td class="actions">
                                 <a href="editar.php?id=<?php echo $row['id']; ?>" class="btn-edit">Editar</a>
+                                <a href="../../portafolio.html?id=<?php echo $row['id']; ?>" target="_blank" class="btn-secondary">Ver</a>
                                 <a href="index.php?eliminar=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('¿Estás seguro de eliminar este item?');">Eliminar</a>
                             </td>
                         </tr>
